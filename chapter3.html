@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+
+    <div class="alert-box" id="alert">
+        알림창임.
+        <button onclick="알림창열기('none');">닫기</button>
+    </div>
+    <button onclick="알림창열기('block');">버튼</button>
+
+    <button onclick="plus(1);">+</button>
+    <button onclick="plus(4);">+</button>
+
+    <script>
+        function 알림창열기(구멍){
+        document.getElementById('alert').style.display = 구멍;
+        }
+
+        function plus(add) {
+            console.log(2 + add);
+        }
+    </script>
+</body>
+</html>
