@@ -1,3 +1,7 @@
+:root {
+    scroll-behavior: auto;
+}
+
 .alert-box {
     background-color: skyblue;
     padding : 20px;
@@ -49,4 +53,30 @@
 .dark {
     background: black;
     color : white;
+}
+
+.slide-container {
+    width : 300vw;
+    /* margin-left 대신 이것도 사용가능. */
+    transition: all 1s;
+}
+
+.slide-box {
+    width: 100vw;
+    float: left;
+}
+
+.slide-box img {
+    width: 100%
+}
+
+.navbar { 
+    position : fixed;
+    width : 100%;
+    z-index: 5;
+}
+
+.navbar-brand {
+    font-size : 25px;
+    transition: all 1s;
 }
