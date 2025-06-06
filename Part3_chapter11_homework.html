@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Hello</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="main.css" rel="stylesheet">
+    <script
+    src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+    crossorigin="anonymous">
+    </script>
+</head>
+<body>
+
+<div class="container">
+  <div class="row">
+      </div>
+  </div>
+</div> 
+
+<div class="container">
+<button class="btn btn-danger" id="more">더보기</button>
+
+<div class="container my-3">
+<button class="btn btn-danger" id="price">가격정렬</button>
+
+<div class="container my-3">
+<button class="btn btn-danger" id="name">이름(다나가)정렬</button>
+
+<div class="container my-3">
+<button class="btn btn-danger" id="price2">6만원이하</button>
+
+
+</div>
+
+<script>
+  var 어레이 = [7,3,5,2,40];
+  //일반 sort함수는 문자순으로 정렬을 해준다.
+  // 만약에 숫자를 정렬하고싶다면?
+  어레이.sort(function (a,b) {
+    return a-b;
+  });
+  console.log(어레이);
+
+
+  //sort함수와는 다르게, filter는 원본을 변형하지 않고, sort는 원본을 변형시킨다.
+  // 작업을 한다하면 filter를 채용하는게 좋을듯?
+  var 결과 = 어레이.filter(function(a) {
+    return a < 4;
+  })
+  console.log(결과);
+
+  // array의 자료 전부를 변형하려면 map함수를 사용한다.
+  var 결과2 = 어레이.map(function(a) {
+  return a * 4;
+  })
+  console.log(결과2);
+
+  var 어레이2 = ['다','가','나'];
+  어레이2.sort( function (a,b) {
+    return a < b;
+  }
+  );
+  console.log(어레이2);
+
+  let count = 0;
+  console.log(`현재 카운팅 : ${count}`)
+  $('#more').on('click', function()  {
+  if(count == 0) {
+    $.get('https://codingapple1.github.io/js/more1.json')
+      .done(function(data) {
+        data.forEach(function(a, i) {
+          var 템플릿 = `
+            <div class="col-sm-4">
+              <img src="https://placehold.co/600" class="w-100">
+              <h5>${a.title}</h5>
+              <p>가격 : ${a.price}</p>
+            </div>
+          `;
+          $('.row').append(템플릿);
+        });
+    });
+          count++;
+          console.log(`카운팅 횟수가 증가합니다. : ${count}`);
+  } else if (count == 1) {
+    $.get('https://codingapple1.github.io/js/more2.json')
+    .done(function(data) {
+      data.forEach(function (a,i) {
+        var 템플릿 = `
+            <div class="col-sm-4">
+              <img src="https://placehold.co/600" class="w-100">
+              <h5>${a.title}</h5>
+              <p>가격 : ${a.price}</p>
+            </div>
+          `;
+          $('.row').append(템플릿);
+      })
+    })
+          count++;
+          console.log(`카운팅 횟수가 증가합니다. : ${count}`);
+  }
+});
+</script>
+
+<script>
+  var products = [
+    { id : 0, price : 70000, title : 'Blossom Dress' },
+    { id : 1, price : 50000, title : 'Springfield Shirt' },
+    { id : 2, price : 60000, title : 'Black Monastery' }
+  ];
+
+    $('#name').click(function() {
+    products.sort(function (a,b) {
+      if (a.title < b.title) {
+        return 1;
+      } else {
+        return -1;
+      }
+    });
+    console.log(products);
+    $('.row').html('');
+
+    products.forEach((a,i)=> {
+    var 템플릿 = 
+    `<div class="col-sm-4">
+        <img src="https://placehold.co/600" class="w-100">
+        <h5>${products[i].title}</h5>
+        <p>가격 : ${products[i].price}</p>
+      </div>`;
+      $('.row').append(템플릿);
+  })
+  });
+
+    $('#price2').click(function() {
+    var six = products.filter(function (a) {
+      return a.price <= 60000;
+    });
+    console.log(six)
+    $('.row').html('');
+
+    six.forEach((a,i)=> {
+    var 템플릿 = `<div class="col-sm-4">
+        <img src="https://placehold.co/600" class="w-100">
+        <h5>${products[i].title}</h5>
+        <p>가격 : ${products[i].price}</p>
+      </div>`;
+      $('.row').append(템플릿);
+  })
+  });
+
+  $('#price').click(function() {
+    products.sort(function (a,b) {
+      return a.price - b.price;
+    });
+
+    $('.row').html('');
+
+    products.forEach((a,i)=> {
+    var 템플릿 = `<div class="col-sm-4">
+        <img src="https://placehold.co/600" class="w-100">
+        <h5>${products[i].title}</h5>
+        <p>가격 : ${products[i].price}</p>
+      </div>`;
+      $('.row').append(템플릿);
+  })
+  });
+
+  products.forEach((a,i)=> {
+    var 템플릿 = `<div class="col-sm-4">
+        <img src="https://placehold.co/600" class="w-100">
+        <h5>${products[i].title}</h5>
+        <p>가격 : ${products[i].price}</p>
+        <button class="buy">구매</button>
+      </div>`;
+      $('.row').append(템플릿);
+  })
+
+  $('.buy').click(function(e) {
+    // 부모를 통해 가지고있는 형제를 가져오는 siblings 함수.
+    var title = $(e.target).siblings('h5').text();
+    
+    if (localStorage.getItem('cart') != null){
+      var get = JSON.parse(localStorage.getItem('cart'));
+      get.push(title);
+      localStorage.setItem('cart', JSON.stringify(get));
+    } else {
+      localStorage.setItem('cart', JSON.stringify([title]));
+    }   
+  })
+  
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

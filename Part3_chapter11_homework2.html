@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+<div>장바구니
+</div>
+<script>
+    var cart = localStorage.getItem('cart');
+
+    if (cart){
+        cart = JSON.parse(cart);
+    } else {
+        cart = [];
+    }
+
+    cart.forEach(function (item){
+    var 템플릿 = `<p>${item}</p>`;
+    $('div').append(템플릿);
+  });
+</script>
+</body>
+</html>

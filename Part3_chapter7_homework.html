@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+//문제1 
+var 출석부 = ['흥민', '영희', '철수', '재석'];
+    function 이름찾기(a){
+
+    for(var i=0; i < 4; i++)
+    if (a == 출석부[i]) {
+    console.log('네');
+    return;
+  }
+이름찾기('철수');
+}
+
+//문제2
+for(let i=2; i<4; i++) {
+    for(let j=1; j<10; j++) {
+        console.log(i*j)
+    }
+}
+
+//문제3 (아 수학문제 --;)
+function 함수(arr,b) {
+    var res = 0;
+
+    for (let i=0; i<arr.length; i++) {
+        res = res + arr[i];
+    }
+    if (res/arr.length < b) {
+        console.log('올랐네요.');
+    } else {
+        console.log("같거나 떨궜네요?")
+    }
+}
+함수([2,3,4], 10);
+</script>
+
+    
+</body>
+</html>
